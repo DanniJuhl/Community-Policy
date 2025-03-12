@@ -1,0 +1,17 @@
+{
+  "if": {
+    "allOf": [
+      {
+        "field": "type",
+        "like": "Microsoft.Fabric/capacities*"
+      },
+      {
+        "value": "[field('type')]",
+        "exists": true
+      }
+    ]
+  },
+  "then": {
+    "effect": "[parameters('effect')]"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "f20fb0b9-f5bb-4a0d-ab8f-f9c28bf16746",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "properties": {
+    "displayName": "Deny Fabric Capacity creations",
+    "description": "This policy prevents or audits the creation of fabric capacity resources to enhance governance whenever needed",
+    "metadata": {
+      "category": "Fabric Capacity",
+      "version": "1.0.0"
+    },
+    "mode": "Indexed",
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Deny, Audit or Disabled the execution of the Policy"
+        },
+        "allowedValues": [
+          "Deny",
+          "Audit",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "like": "Microsoft.Fabric/capacities*"
+          },
+          {
+            "value": "[field('type')]",
+            "exists": true
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]"
+      }
+    }
+  }
+}
