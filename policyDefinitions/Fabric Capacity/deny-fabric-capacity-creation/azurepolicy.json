@@ -8,7 +8,7 @@
       "category": "Fabric Capacity",
       "version": "1.0.0"
     },
-    "mode": "Indexed",
+    "mode": "all",
     "parameters": {
       "effect": {
         "type": "String",
